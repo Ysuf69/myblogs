@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Blok>
+@{
+    ViewBag.Title = "AdminBlokList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Blog Listesi</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>Kategori</th>
+        <th>Tarih</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+        <th>Yorumlar</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.BlogID</td>
+                    <td>@item.BlogTittle</td>
+                    <td>@item.Category.CategoryName</td>
+                    <td>@item.BlogDate.ToShortDateString()</td>
+                    <td><a href="/Blok/DeleteBlok/@item.BlogID" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Blok/UpdateBlok/@item.BlogID" class="btn btn-success">Güncelle</a></td>
+                    <td><a href="/Blok/BlokDetails/@item.BlogID" class="btn btn-warning">Detaylar</a></td>
+                    <td><a href="/Blok/GetCommentByBlok/@item.BlogID" class="btn btn-dark">Yorumlar</a></td>
+                </tr>
+            }
+</table>
+<a href="/Blok/AddNewBlok/" class="btn btn-primary">Yeni Blog Ekle</a>
+
